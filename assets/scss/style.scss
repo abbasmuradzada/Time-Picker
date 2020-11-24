@@ -1,8 +1,14 @@
 @import './details/reset';
 @import './details/mixins';
+@import './details/animations';
+//Components
+@import './components/index';
 body{
+    background: linear-gradient(90deg, rgba(254,255,1,0.3536765047816002) 10%, rgba(0,0,0,0.5385504543614321) 81%);
     height: 100vh;
     width: 100vw;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
     @include flex-style (center, center);
     // [class$=input]
     input{
@@ -27,13 +33,14 @@ body{
     .date-container{
         width: 100rem;
         min-height: 100px;
-        background-color: yellow;
+        // background-color: yellow;
         padding: 20px;
         @include flex-style (flex-start, space-between);
         .data-row{
-            @include font-style (1.6rem, 2rem, 500, #000);
+            @include font-style (1.6rem, 2rem, 400, #000);
             width: 47.5rem;
             padding: 1rem;
+            cursor: pointer;
             margin: .5px 0;
             box-sizing: border-box;
             background-color: pink;

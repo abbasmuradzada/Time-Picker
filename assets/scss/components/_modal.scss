@@ -1,0 +1,53 @@
+.modal{
+    position: absolute;
+    width: 100vw;
+    top: 50%;
+    transform: translateY(-50%);
+    // height: 100vh;
+    animation-name: modal-bg;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    left: 0;
+    background-color: rgba($color: #000000, $alpha: .8);
+    // opacity: .7;
+    @include flex-style (center, center);
+    display: none;
+    .event{
+        width: 120rem;
+        background-color: #fff;
+        border-radius: 1rem;
+        overflow: hidden;
+        padding: 20px;
+        box-sizing: border-box;
+        animation-name: modal;
+        animation-duration: .5s;
+        animation-delay: 0.5s;
+        animation-fill-mode: forwards;
+        opacity: 0;
+        @include flex-style (flex-start, space-between);
+        .event-name{
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            @include font-style (4rem, 5rem, 400, #000);
+            text-align: center;
+        }
+        .time-indicator{
+            width: calc((100% - 100px)/6);
+            height: 20rem;
+            border-radius: .3rem;
+            border: 1px solid rgba($color: #000000, $alpha: .2);
+            flex-direction: column;
+            @include flex-style (center, flex-start);
+            >span{
+                margin-top: 30px;
+                &.event-time-count{
+                    @include font-style (7rem, 8rem, 500, #000);
+                }
+                &.event-time-name{
+                    @include font-style (2rem, 2rem, 500, #000);
+                }   
+            }
+        }
+    }
+}

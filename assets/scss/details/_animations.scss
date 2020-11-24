@@ -1,0 +1,9 @@
+@keyframes modal-bg{
+    from {height: 0}
+    to {height: 100vh;}
+}
+
+@keyframes modal{
+    from {opacity: 0}
+    to {opacity: 1}
+}

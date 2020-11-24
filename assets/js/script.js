@@ -3,6 +3,17 @@ const textInput = document.querySelector('.text-input');
 const dateInput = document.querySelector('.date-input');
 const timeInput = document.querySelector('.time-input');
 const dateContainer = document.querySelector('.date-container');
+const dataRow = document.querySelector('.data-row');
+const modal = document.querySelector('.modal');
+
+const openModal = () => {
+    const dataRow = document.querySelector('.data-row');
+    dataRow.addEventListener('dblclick', () => {
+        modal.style.display="flex";
+        console.log("test");
+    })
+}
+
 
 let dateList = [];
 var date = new Date;
@@ -27,6 +38,7 @@ submitBtn.addEventListener('click', (e) => {
         textInput.focus();
         renderList();
     }
+    openModal();
 })
 
 
