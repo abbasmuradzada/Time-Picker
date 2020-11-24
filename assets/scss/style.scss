@@ -1,0 +1,48 @@
+@import './details/reset';
+@import './details/mixins';
+body{
+    height: 100vh;
+    width: 100vw;
+    @include flex-style (center, center);
+    // [class$=input]
+    input{
+        padding: 0 20px;
+        height: 7rem;
+        outline: none;
+        background-color: purple;
+        color: #fff;
+        border: none;
+        &:first-child{
+            border-bottom-left-radius: 1rem;
+            border-top-left-radius: 1rem;
+        }
+        &:last-child{
+            border-bottom-right-radius: 1rem;
+            border-top-right-radius: 1rem;
+        }
+        &::placeholder{
+            color: rgba($color: #fff, $alpha: .7);
+        } 
+    }
+    .date-container{
+        width: 100rem;
+        min-height: 100px;
+        background-color: yellow;
+        padding: 20px;
+        @include flex-style (flex-start, space-between);
+        .data-row{
+            @include font-style (1.6rem, 2rem, 500, #000);
+            width: 47.5rem;
+            padding: 1rem;
+            margin: .5px 0;
+            box-sizing: border-box;
+            background-color: pink;
+            border-radius: 1rem;
+            @include flex-style (center, space-between);        
+            span{
+                margin-left: auto;
+            }
+        }
+    }
+}
+
