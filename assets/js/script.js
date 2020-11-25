@@ -11,6 +11,7 @@ const countDownHour = document.querySelector('.hour')
 const countDownMinute = document.querySelector('.minute')
 const countDownSecond = document.querySelector('.second')
 const eventName = document.querySelector('.event-name');
+const eventWarn = document.querySelector('.event-warning');
 const eventType = document.querySelector('.event-type');
 
 console.log(eventType.value);
@@ -56,23 +57,35 @@ const openModal = () => {
                 let now = new Date();
                 let eventDate = new Date(dateList[index].date);
                 let distance = eventDate - now;
-                
-                
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                var years = Math.floor(days / 365);
-                var months = Math.floor((days % 365) / 12);
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24) % 30.4);
+                if (distance>0) {
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    var years = Math.floor(days / 365);
+                    var months = Math.floor((days % 365) / 12);
+                    var days = Math.floor(distance / (1000 * 60 * 60 * 24) % 30.4);
 
-                eventName.innerText = dateList[index].name;
-                countDownYear.innerText = years
-                countDownMonth.innerText = months;
-                countDownDay.innerText = days;
-                countDownHour.innerText = hours;
-                countDownMinute.innerText = minutes;
-                countDownSecond.innerText = seconds;
+                    eventWarn.innerText = dateList[index].date;
+                    eventName.innerText = dateList[index].name;
+                    countDownYear.innerText = years
+                    countDownMonth.innerText = months;
+                    countDownDay.innerText = days;
+                    countDownHour.innerText = hours;
+                    countDownMinute.innerText = minutes;
+                    countDownSecond.innerText = seconds;
+                }else{
+                    eventWarn.innerText = "your time is over";
+                    eventName.innerText = dateList[index].name;
+                    countDownYear.innerText = 0
+                    countDownMonth.innerText = 0;
+                    countDownDay.innerText = 0;
+                    countDownHour.innerText = 0;
+                    countDownMinute.innerText = 0;
+                    countDownSecond.innerText = 0;
+                }
+                
+                
             }, 1000);
             
         })

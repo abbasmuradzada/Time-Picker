@@ -35,14 +35,22 @@ body{
         @include flex-style (flex-start, space-between);
         .data-row{
             @include font-style (1.6rem, 2rem, 400, #000);
-            width: 47.5rem;
+            width: 25rem;
+            height: 10rem;
             padding: 1rem;
+            background-image: url('../images/new-year.jpg');
+            background-size: cover;
             cursor: pointer;
-            margin: .5px 0;
+            margin: .5rem 0;
             box-sizing: border-box;
             background-color: pink;
             border-radius: 1rem;
-            @include flex-style (center, space-between);        
+            @include flex-style (center, space-between);
+            >span{
+                background-color: white;
+                padding: 1rem;
+                border-radius: 1rem;
+            }        
         }
     }
 }
