@@ -12,8 +12,13 @@
     <section>
         <form>
             <input placeholder="Enter event time" type="text" class="text-input">
-            <input type="date" class="date-input">
-            <input type="time" class="time-input">
+            <input type="datetime-local" class="date-input">
+            <select class="event-type" name="" id="">
+                    <option value="other">Ohter</option>
+                    <option value="birthday">Birthday</option>
+                    <option value="new-year">New Year</option>
+                    <option value="party">Party</option>
+            </select>
             <input type="submit" value="Add" class="submit">
         </form>
         <div class="date-container">
@@ -23,29 +28,29 @@
 
     <div class="modal">
         <div class="event">
-            <div class="event-name">Tarlan's birthday</div>
+            <div class="event-name"></div>
             <div class="time-indicator">
-                <span class="event-time-count">3</span>
+                <span class="event-time-count year"></span>
                 <span class="event-time-name">Year</span>
             </div>
             <div class="time-indicator">
-                <span class="event-time-count">11</span>
+                <span class="event-time-count month"></span>
                 <span class="event-time-name">Month</span>
             </div>
             <div class="time-indicator">
-                <span class="event-time-count">27</span>
+                <span class="event-time-count day">27</span>
                 <span class="event-time-name">Day</span>
             </div>
             <div class="time-indicator">
-                <span class="event-time-count">17</span>
+                <span class="event-time-count hour">17</span>
                 <span class="event-time-name">Hour</span>
             </div>
             <div class="time-indicator">
-                <span class="event-time-count">49</span>
+                <span class="event-time-count minute">49</span>
                 <span class="event-time-name">Minute</span>
             </div>
             <div class="time-indicator">
-                <span class="event-time-count">55</span>
+                <span class="event-time-count second">55</span>
                 <span class="event-time-name">Second</span>
             </div>
         </div>

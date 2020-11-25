@@ -11,24 +11,21 @@ body{
     position: relative;
     @include flex-style (center, center);
     // [class$=input]
-    input{
+    input, select{
         padding: 0 20px;
         height: 7rem;
         outline: none;
         background-color: purple;
         color: #fff;
         border: none;
-        &:first-child{
-            border-bottom-left-radius: 1rem;
-            border-top-left-radius: 1rem;
-        }
-        &:last-child{
-            border-bottom-right-radius: 1rem;
-            border-top-right-radius: 1rem;
-        }
         &::placeholder{
             color: rgba($color: #fff, $alpha: .7);
         } 
+        option{
+            background-color: #fff;
+            color: #000;
+            padding: 10px 0;
+        }
     }
     .date-container{
         width: 100rem;
@@ -46,9 +43,6 @@ body{
             background-color: pink;
             border-radius: 1rem;
             @include flex-style (center, space-between);        
-            span{
-                margin-left: auto;
-            }
         }
     }
 }

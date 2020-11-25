@@ -218,7 +218,7 @@ body {
       flex-wrap: wrap;
 }
 
-body input {
+body input, body select {
   padding: 0 20px;
   height: 7rem;
   outline: none;
@@ -227,30 +227,26 @@ body input {
   border: none;
 }
 
-body input:first-child {
-  border-bottom-left-radius: 1rem;
-  border-top-left-radius: 1rem;
-}
-
-body input:last-child {
-  border-bottom-right-radius: 1rem;
-  border-top-right-radius: 1rem;
-}
-
-body input::-webkit-input-placeholder {
+body input::-webkit-input-placeholder, body select::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-body input:-ms-input-placeholder {
+body input:-ms-input-placeholder, body select:-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-body input::-ms-input-placeholder {
+body input::-ms-input-placeholder, body select::-ms-input-placeholder {
   color: rgba(255, 255, 255, 0.7);
 }
 
-body input::placeholder {
+body input::placeholder, body select::placeholder {
   color: rgba(255, 255, 255, 0.7);
+}
+
+body input option, body select option {
+  background-color: #fff;
+  color: #000;
+  padding: 10px 0;
 }
 
 body .date-container {
@@ -294,8 +290,4 @@ body .date-container .data-row {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-}
-
-body .date-container .data-row span {
-  margin-left: auto;
 }
