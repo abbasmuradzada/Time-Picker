@@ -4,12 +4,12 @@ const dateInput = document.querySelector('.date-input');
 const dateContainer = document.querySelector('.date-container');
 const dataRow = document.querySelector('.data-row');
 const modal = document.querySelector('.modal');
-const countDownYear = document.querySelector('.year')
-const countDownMonth = document.querySelector('.month')
-const countDownDay = document.querySelector('.day')
-const countDownHour = document.querySelector('.hour')
-const countDownMinute = document.querySelector('.minute')
-const countDownSecond = document.querySelector('.second')
+const countDownYear = document.querySelector('.year');
+const countDownMonth = document.querySelector('.month');
+const countDownDay = document.querySelector('.day');
+const countDownHour = document.querySelector('.hour');
+const countDownMinute = document.querySelector('.minute');
+const countDownSecond = document.querySelector('.second');
 const eventName = document.querySelector('.event-name');
 const eventWarn = document.querySelector('.event-warning');
 const eventType = document.querySelector('.event-type');
@@ -19,6 +19,7 @@ console.log(eventType.value);
 let dateList = [];
 var date = new Date;
 let countDown;
+let clickDelete = false;
 
 
 submitBtn.addEventListener('click', (e) => {
@@ -33,17 +34,25 @@ submitBtn.addEventListener('click', (e) => {
             type: dateInput.value,
         } 
         dateList.push(newPickDate);
+        dateList.sort((a,b) => {
+            if ( a.date < b.date ){
+                return -1;
+            }
+            if ( a.date > b.date ){
+                return 1;
+            }
+            return 0;
+        })
         textInput.value = '';
         dateInput.value = '';
         textInput.focus();
         renderList();
+        
     }
     openModal();
     closeModal();
-
-    // Test
-    
-
+    // deleteEvent();
+    console.log(dateList);    
 })
 
 
@@ -83,12 +92,10 @@ const openModal = () => {
                     countDownHour.innerText = 0;
                     countDownMinute.innerText = 0;
                     countDownSecond.innerText = 0;
-                }
-                
-                
+                }                
             }, 1000);
             
-        })
+        })  
     });
 }
 
@@ -110,10 +117,33 @@ const renderList = () => {
         const eventContent = document.createElement('span');
         eventContent.innerText = date.name;
         eventTime.innerText = date.date;
-        dataRow.appendChild(eventContent);
-        dataRow.appendChild(eventTime);
+        // const deleneBtn = document.createElement('i');
+        // deleneBtn.className='delete-btn fas fa-trash-alt'
+        // // dataRow.classList.add('newYearBg');
+        dataRow.append(eventContent, eventTime);
         dateContainer.appendChild(dataRow);
     })
 }
 
-renderList();
+
+dateList.sort((a,b) => {
+    if ( a.date < b.date ){
+        return -1;
+    }
+    if ( a.date > b.date ){
+        return 1;
+    }
+    return 0;
+})
+
+
+// const deleteEvent = () => {
+//     const deleteBtns = document.querySelectorAll('.delete-btn');
+//     deleteBtns.forEach((element, index) => {
+//         element.addEventListener('click', () => {
+//             dateList.splice(index, 1);
+//             console.log(dateList);
+//             renderList();
+//         })
+//     });
+// }
