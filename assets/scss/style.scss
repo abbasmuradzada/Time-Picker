@@ -19,7 +19,7 @@ body{
         width: 100rem;
         input, select{
             padding: 0 20px;
-            width: 23%;
+            width: 30%;
             border-radius: 2rem;
             height: 7rem;
             box-sizing: border-box;
@@ -28,7 +28,7 @@ body{
             color: #000;
             border: none;
             &::placeholder{
-                color: rgba($color: #fff, $alpha: .7);
+                color: rgba($color: rgb(141, 141, 141), $alpha: .7);
             } 
             option{
                 background-color: #fff;
@@ -51,7 +51,8 @@ body{
             width: 45%;
             height: 10rem;
             padding: 1rem;
-            background-image: url('../images/new-year.jpg');
+            // background-image: url('../images/new-year.jpg');
+            background-color: #69F7FF;
             background-size: cover;
             cursor: pointer;
             margin-bottom: 2rem;

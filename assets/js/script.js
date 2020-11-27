@@ -12,9 +12,7 @@ const countDownMinute = document.querySelector('.minute');
 const countDownSecond = document.querySelector('.second');
 const eventName = document.querySelector('.event-name');
 const eventWarn = document.querySelector('.event-warning');
-const eventType = document.querySelector('.event-type');
-
-console.log(eventType.value);
+// const eventType = document.querySelector('.event-type');
 
 let dateList = [];
 var date = new Date;
@@ -27,7 +25,7 @@ submitBtn.addEventListener('click', (e) => {
     if (textInput.value=='' || dateInput.value=='') {
         alert("Fields cannot be empty")
     }else{
-        let newPickDate = {
+        const newPickDate = {
             id: dateList.length+1,
             name: textInput.value,
             date: dateInput.value,
@@ -49,10 +47,9 @@ submitBtn.addEventListener('click', (e) => {
         renderList();
         
     }
+    deleteEvent();
     openModal();
-    closeModal();
-    // deleteEvent();
-    console.log(dateList);    
+    closeModal();    
 })
 
 
@@ -117,10 +114,11 @@ const renderList = () => {
         const eventContent = document.createElement('span');
         eventContent.innerText = date.name;
         eventTime.innerText = date.date;
-        // const deleneBtn = document.createElement('i');
-        // deleneBtn.className='delete-btn fas fa-trash-alt'
-        // // dataRow.classList.add('newYearBg');
-        dataRow.append(eventContent, eventTime);
+        const deleneBtn = document.createElement('i');
+        deleneBtn.className='delete-btn fas fa-trash-alt'
+        dataRow.classList.add('newYearBg');
+        // dataRow.style.backgroundColor = "red";
+        dataRow.append(eventContent, deleneBtn, eventTime);
         dateContainer.appendChild(dataRow);
     })
 }
@@ -137,13 +135,17 @@ dateList.sort((a,b) => {
 })
 
 
-// const deleteEvent = () => {
-//     const deleteBtns = document.querySelectorAll('.delete-btn');
-//     deleteBtns.forEach((element, index) => {
-//         element.addEventListener('click', () => {
-//             dateList.splice(index, 1);
-//             console.log(dateList);
-//             renderList();
-//         })
-//     });
-// }
+const deleteEvent = () => {
+    const deleteBtns = document.querySelectorAll('.delete-btn');
+    deleteBtns.forEach((element, index) => {
+        element.addEventListener('click', () => {
+            const itemForDelete = dateList.find(item => item.id == element.id);
+            const itemIndex = dateList.indexOf(itemForDelete);
+            dateList.splice(itemIndex, 1);
+            clickDelete = true;
+            console.log(clickDelete);
+            renderList();
+        })
+    });
+}
+
