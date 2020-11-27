@@ -5,7 +5,6 @@ const dateContainer = document.querySelector('.date-container');
 const dataRow = document.querySelector('.data-row');
 const modal = document.querySelector('.modal');
 const countDownYear = document.querySelector('.year');
-const countDownMonth = document.querySelector('.month');
 const countDownDay = document.querySelector('.day');
 const countDownHour = document.querySelector('.hour');
 const countDownMinute = document.querySelector('.minute');
@@ -15,7 +14,7 @@ const eventWarn = document.querySelector('.event-warning');
 // const eventType = document.querySelector('.event-type');
 
 let dateList = [];
-let date = new Date;
+const date = new Date;
 let countDown;
 
 
@@ -57,8 +56,7 @@ const openModal = () => {
     dataRow.forEach((eventRow, index) => {
         eventRow.addEventListener('dblclick', () => {
             modal.style.display="flex";
-        
-            countDown = setInterval(() => {
+            const renderModal = () => {
                 let now = new Date();
                 let eventDate = new Date(dateList[index].date);
                 let distance = eventDate - now;
@@ -68,7 +66,6 @@ const openModal = () => {
                     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
                     var years = 0;
-                    var months = 0;
                     if (days>365) {
                         years = Math.floor(days / 365);
                         days = Math.floor(days % 365);
@@ -77,7 +74,6 @@ const openModal = () => {
                     eventWarn.innerText = dateList[index].date;
                     eventName.innerText = dateList[index].name;
                     countDownYear.innerText = years
-                    countDownMonth.innerText = months;
                     countDownDay.innerText = days;
                     countDownHour.innerText = hours;
                     countDownMinute.innerText = minutes;
@@ -86,13 +82,14 @@ const openModal = () => {
                     eventWarn.innerText = "your time is over";
                     eventName.innerText = dateList[index].name;
                     countDownYear.innerText = 0
-                    countDownMonth.innerText = 0;
                     countDownDay.innerText = 0;
                     countDownHour.innerText = 0;
                     countDownMinute.innerText = 0;
                     countDownSecond.innerText = 0;
                 }                
-            }, 1000);
+            }
+            renderModal();
+            countDown = setInterval((() => renderModal()), 1000);
             
         })  
     });
