@@ -15,9 +15,8 @@ const eventWarn = document.querySelector('.event-warning');
 // const eventType = document.querySelector('.event-type');
 
 let dateList = [];
-var date = new Date;
+let date = new Date;
 let countDown;
-let clickDelete = false;
 
 
 submitBtn.addEventListener('click', (e) => {
@@ -56,7 +55,7 @@ submitBtn.addEventListener('click', (e) => {
 const openModal = () => {
     const dataRow = document.querySelectorAll('.data-row');
     dataRow.forEach((eventRow, index) => {
-        eventRow.addEventListener('click', () => {
+        eventRow.addEventListener('dblclick', () => {
             modal.style.display="flex";
         
             countDown = setInterval(() => {
@@ -68,10 +67,13 @@ const openModal = () => {
                     var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    var years = Math.floor(days / 365);
-                    var months = Math.floor((days % 365) / 12);
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24) % 30.4);
-
+                    var years = 0;
+                    var months = 0;
+                    if (days>365) {
+                        years = Math.floor(days / 365);
+                        days = Math.floor(days % 365);
+                    }
+                    
                     eventWarn.innerText = dateList[index].date;
                     eventName.innerText = dateList[index].name;
                     countDownYear.innerText = years
@@ -117,34 +119,19 @@ const renderList = () => {
         const deleneBtn = document.createElement('i');
         deleneBtn.className='delete-btn fas fa-trash-alt'
         dataRow.classList.add('newYearBg');
-        // dataRow.style.backgroundColor = "red";
+        // dataRow.style.backgroundImage = "url('../images/test.png')";
         dataRow.append(eventContent, deleneBtn, eventTime);
         dateContainer.appendChild(dataRow);
     })
 }
 
-
-dateList.sort((a,b) => {
-    if ( a.date < b.date ){
-        return -1;
-    }
-    if ( a.date > b.date ){
-        return 1;
-    }
-    return 0;
-})
-
-
 const deleteEvent = () => {
     const deleteBtns = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach((element, index) => {
         element.addEventListener('click', () => {
-            const itemForDelete = dateList.find(item => item.id == element.id);
-            const itemIndex = dateList.indexOf(itemForDelete);
-            dateList.splice(itemIndex, 1);
-            clickDelete = true;
-            console.log(clickDelete);
+            dateList.splice(index, 1);
             renderList();
+            deleteEvent();
         })
     });
 }
