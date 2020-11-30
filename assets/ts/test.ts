@@ -1,21 +1,27 @@
-const submitBtn = document.querySelector('.submit');
-const textInput = document.querySelector('.text-input');
-const dateInput = document.querySelector('.date-input');
-const dateContainer = document.querySelector('.date-container');
-const dataRow = document.querySelector('.data-row');
-const modal = document.querySelector('.modal');
-const countDownYear = document.querySelector('.year');
-const countDownDay = document.querySelector('.day');
-const countDownHour = document.querySelector('.hour');
-const countDownMinute = document.querySelector('.minute');
-const countDownSecond = document.querySelector('.second');
-const eventName = document.querySelector('.event-name');
-const eventWarn = document.querySelector('.event-warning');
-// const eventType = document.querySelector('.event-type');
+interface IEvent {
+    id: number;
+    name: string;
+    date: string;
+    type: string;
+}
 
-let dateList = [];
-const date = new Date;
-let countDown;
+const submitBtn:HTMLInputElement = document.querySelector('.submit');
+const textInput:HTMLInputElement = document.querySelector('.text-input');
+const dateInput:HTMLInputElement = document.querySelector('.date-input');
+const dateContainer:HTMLDivElement = document.querySelector('.date-container');
+const dataRow:HTMLDivElement = document.querySelector('.data-row');
+const modal:HTMLDivElement = document.querySelector('.modal');
+const countDownYear:HTMLSpanElement = document.querySelector('.year');
+const countDownDay:HTMLSpanElement = document.querySelector('.day');
+const countDownHour:HTMLSpanElement = document.querySelector('.hour');
+const countDownMinute:HTMLSpanElement = document.querySelector('.minute');
+const countDownSecond:HTMLSpanElement = document.querySelector('.second');
+const eventName:HTMLDivElement = document.querySelector('.event-name');
+const eventWarn:HTMLDivElement = document.querySelector('.event-warning');
+
+const dateList:IEvent[] = [];
+const date:Date = new Date;
+let countDown: number;
 
 
 submitBtn.addEventListener('click', (e) => {
@@ -23,7 +29,7 @@ submitBtn.addEventListener('click', (e) => {
     if (textInput.value=='' || dateInput.value=='') {
         alert("Fields cannot be empty")
     }else{
-        const newPickDate = {
+        const newPickDate:IEvent = {
             id: dateList.length+1,
             name: textInput.value,
             date: dateInput.value,
@@ -50,22 +56,21 @@ submitBtn.addEventListener('click', (e) => {
     closeModal();    
 })
 
-
 const openModal = () => {
     const dataRow = document.querySelectorAll('.data-row');
     dataRow.forEach((eventRow, index) => {
         eventRow.addEventListener('dblclick', () => {
             modal.style.display="flex";
             const renderModal = () => {
-                let now = new Date();
-                let eventDate = new Date(dateList[index].date);
-                let distance = eventDate - now;
+                let now:any = new Date();
+                let eventDate:any = new Date(dateList[index].date);
+                let distance:number = eventDate - now;
                 if (distance>0) {
-                    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-                    var years = 0;
+                    var days:number = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    var hours:number = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    var minutes:number = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds:number = Math.floor((distance % (1000 * 60)) / 1000);
+                    var years:number = 0;
                     if (days>365) {
                         years = Math.floor(days / 365);
                         days = Math.floor(days % 365);
@@ -73,19 +78,19 @@ const openModal = () => {
                     
                     eventWarn.innerText = dateList[index].date;
                     eventName.innerText = dateList[index].name;
-                    countDownYear.innerText = years
-                    countDownDay.innerText = days;
-                    countDownHour.innerText = hours;
-                    countDownMinute.innerText = minutes;
-                    countDownSecond.innerText = seconds;
+                    countDownYear.innerText = years.toString();
+                    countDownDay.innerText = days.toString();
+                    countDownHour.innerText = hours.toString();
+                    countDownMinute.innerText = minutes.toString();
+                    countDownSecond.innerText = seconds.toString();
                 }else{
                     eventWarn.innerText = "your time is over";
                     eventName.innerText = dateList[index].name;
-                    countDownYear.innerText = 0
-                    countDownDay.innerText = 0;
-                    countDownHour.innerText = 0;
-                    countDownMinute.innerText = 0;
-                    countDownSecond.innerText = 0;
+                    countDownYear.innerText = "0"
+                    countDownDay.innerText = "0";
+                    countDownHour.innerText = "0";
+                    countDownMinute.innerText = "0";
+                    countDownSecond.innerText = "0";
                 }                
             }
             renderModal();
@@ -96,7 +101,7 @@ const openModal = () => {
 }
 
 const closeModal = () => {
-    window.onclick = function(event) {
+    window.onclick = function(event:Event) {
         if (event.target == modal) {
           modal.style.display = "none";
           clearInterval(countDown);
@@ -107,10 +112,10 @@ const closeModal = () => {
 const renderList = () => {
     dateContainer.innerHTML='';
     dateList.map((date) => {
-        const dataRow = document.createElement('div');
+        const dataRow:HTMLDivElement = document.createElement('div');
         dataRow.className="data-row";
-        const eventTime = document.createElement('span');
-        const eventContent = document.createElement('span');
+        const eventTime:HTMLSpanElement = document.createElement('span');
+        const eventContent:HTMLSpanElement = document.createElement('span');
         eventContent.innerText = date.name;
         eventTime.innerText = date.date;
         const deleneBtn = document.createElement('i');
@@ -123,7 +128,7 @@ const renderList = () => {
 }
 
 const deleteEvent = () => {
-    const deleteBtns = document.querySelectorAll('.delete-btn');
+    const deleteBtns:NodeList = document.querySelectorAll('.delete-btn');
     deleteBtns.forEach((element, index) => {
         element.addEventListener('click', () => {
             dateList.splice(index, 1);
