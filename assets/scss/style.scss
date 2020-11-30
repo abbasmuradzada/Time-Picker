@@ -17,7 +17,25 @@ body{
     form{
         @include flex-style (flex-start, space-between);
         width: 100rem;
+        @media screen and (max-width: 70rem) {
+            width: 70vw;
+            margin: auto;
+        }
+        @media screen and (max-width: 50rem) {
+            width: 95vw;
+            margin: auto;
+        }
         input, select{
+            @media screen and (max-width: 80rem) {
+                width: 100%;
+                margin: auto;
+                margin-bottom: 1rem;
+            }
+            // @media screen and (max-width: 50rem) {
+            //     width: 95%;
+            //     margin: auto;
+            //     margin-bottom: 1rem;
+            // }
             padding: 0 20px;
             width: 30%;
             border-radius: 2rem;
@@ -46,7 +64,18 @@ body{
         @include flex-style (flex-start, space-between);
         padding-top: 20px;
         box-sizing: border-box;
+        @media screen and (max-width: 70rem) {
+            width: 70vw;
+        }
+        @media screen and (max-width: 50rem) {
+            width: 95vw;
+        }
         .data-row{
+            @media screen and (max-width: 80rem) {
+                width: 100%;
+                margin: auto;
+                margin-bottom: 2rem;
+            }
             @include font-style (1.6rem, 2rem, 400, #000);
             width: 45%;
             height: 10rem;

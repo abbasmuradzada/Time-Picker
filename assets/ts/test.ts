@@ -36,7 +36,7 @@ submitBtn.addEventListener('click', (e) => {
             type: dateInput.value,
         } 
         dateList.push(newPickDate);
-        dateList.sort((a,b) => {
+        dateList.sort((a:IEvent,b:IEvent) => {
             if ( a.date < b.date ){
                 return -1;
             }
@@ -57,8 +57,8 @@ submitBtn.addEventListener('click', (e) => {
 })
 
 const openModal = () => {
-    const dataRow = document.querySelectorAll('.data-row');
-    dataRow.forEach((eventRow, index) => {
+    const dataRow:NodeList = document.querySelectorAll('.data-row');
+    dataRow.forEach((eventRow: HTMLDivElement, index: number) => {
         eventRow.addEventListener('dblclick', () => {
             modal.style.display="flex";
             const renderModal = () => {
@@ -84,7 +84,7 @@ const openModal = () => {
                     countDownMinute.innerText = minutes.toString();
                     countDownSecond.innerText = seconds.toString();
                 }else{
-                    eventWarn.innerText = "your time is over";
+                    eventWarn.innerText = "Event time has passed";
                     eventName.innerText = dateList[index].name;
                     countDownYear.innerText = "0"
                     countDownDay.innerText = "0";
@@ -118,7 +118,7 @@ const renderList = () => {
         const eventContent:HTMLSpanElement = document.createElement('span');
         eventContent.innerText = date.name;
         eventTime.innerText = date.date;
-        const deleneBtn = document.createElement('i');
+        const deleneBtn:HTMLElement = document.createElement('i');
         deleneBtn.className='delete-btn fas fa-trash-alt'
         dataRow.classList.add('newYearBg');
         // dataRow.style.backgroundImage = "url('../images/test.png')";
@@ -129,7 +129,7 @@ const renderList = () => {
 
 const deleteEvent = () => {
     const deleteBtns:NodeList = document.querySelectorAll('.delete-btn');
-    deleteBtns.forEach((element, index) => {
+    deleteBtns.forEach((element:HTMLElement, index:number) => {
         element.addEventListener('click', () => {
             dateList.splice(index, 1);
             renderList();

@@ -73,7 +73,7 @@ var openModal = function () {
                     countDownSecond.innerText = seconds.toString();
                 }
                 else {
-                    eventWarn.innerText = "your time is over";
+                    eventWarn.innerText = "Event time has passed";
                     eventName.innerText = dateList[index].name;
                     countDownYear.innerText = "0";
                     countDownDay.innerText = "0";

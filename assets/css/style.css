@@ -198,6 +198,13 @@ table {
       flex-wrap: wrap;
 }
 
+@media screen and (max-width: 50rem) {
+  .modal .event .time-indicator {
+    width: 45%;
+    margin-bottom: 2rem;
+  }
+}
+
 .modal .event .time-indicator > span {
   margin-top: 30px;
 }
@@ -253,6 +260,20 @@ body form {
   width: 100rem;
 }
 
+@media screen and (max-width: 70rem) {
+  body form {
+    width: 70vw;
+    margin: auto;
+  }
+}
+
+@media screen and (max-width: 50rem) {
+  body form {
+    width: 95vw;
+    margin: auto;
+  }
+}
+
 body form input, body form select {
   padding: 0 20px;
   width: 30%;
@@ -264,6 +285,14 @@ body form input, body form select {
   background-color: #fff;
   color: #000;
   border: none;
+}
+
+@media screen and (max-width: 80rem) {
+  body form input, body form select {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 1rem;
+  }
 }
 
 body form input::-webkit-input-placeholder, body form select::-webkit-input-placeholder {
@@ -309,6 +338,18 @@ body .date-container {
           box-sizing: border-box;
 }
 
+@media screen and (max-width: 70rem) {
+  body .date-container {
+    width: 70vw;
+  }
+}
+
+@media screen and (max-width: 50rem) {
+  body .date-container {
+    width: 95vw;
+  }
+}
+
 body .date-container .data-row {
   font-size: 1.6rem;
   line-height: 2rem;
@@ -336,6 +377,14 @@ body .date-container .data-row {
           justify-content: space-between;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+}
+
+@media screen and (max-width: 80rem) {
+  body .date-container .data-row {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 2rem;
+  }
 }
 
 body .date-container .data-row:hover {
